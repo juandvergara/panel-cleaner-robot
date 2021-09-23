@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<robot>
+  <!-- materials -->
+  <gazebo reference="base_link">
+    <material>Gazebo/Red</material>
+  </gazebo>
+
+ <gazebo reference="wheel_1">
+        <material>Gazebo/Yellow</material>
+ </gazebo>
+
+ <gazebo reference="wheel_2">
+        <material>Gazebo/Yellow</material>
+ </gazebo>
+
+ <gazebo reference="wheel_3">
+        <material>Gazebo/Yellow</material>
+ </gazebo>
+
+ <gazebo reference="wheel_4">
+        <material>Gazebo/Yellow</material>
+ </gazebo>
+
+  <!-- camera_link -->
+  <gazebo reference="camera_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  
+  <gazebo reference="imu_link">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  
+  <gazebo reference="sonar1_link">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  
+  <gazebo reference="sonar2_link">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  
+  <gazebo reference="roller_link">
+    <material>Gazebo/White</material>
+  </gazebo>
+  
+  <!-- camera link -->
+  <gazebo reference="camera_link">
+    <sensor type="camera" name="camera1">
+      <update_rate>30.0</update_rate>
+      <camera name="head">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>robot/camera1</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>camera_link</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>  
+  
+  <!-- imu -->
+  <gazebo reference="imu_link">
+    <gravity>true</gravity>
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <visualize>true</visualize>
+      <topic>__default_topic__</topic>
+      <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+        <topicName>imu</topicName>
+        <bodyName>imu_link</bodyName>
+        <updateRateHZ>10.0</updateRateHZ>
+        <gaussianNoise>0.0</gaussianNoise>
+        <xyzOffset>0 0 0</xyzOffset>
+        <rpyOffset>0 0 0</rpyOffset>
+        <frameName>imu_link</frameName>
+        <initialOrientationAsReference>false</initialOrientationAsReference>
+      </plugin>
+      <pose>0 0 0 0 0 0</pose>
+    </sensor>
+  </gazebo>
+  
+  <!-- sonar1 -->
+   <gazebo reference="sonar1_link">        
+   <sensor type="ray" name="sonar1">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>50</update_rate>
+         <ray>
+         <scan>
+            <horizontal>
+               <samples>10</samples>
+               <resolution>1</resolution> 
+               <min_angle>-0.14835</min_angle>
+               <max_angle>0.14835</max_angle>
+            </horizontal>
+            <vertical>
+               <samples>10</samples>
+               <resolution>1</resolution> 
+               <min_angle>-0.14835</min_angle>
+               <max_angle>0.14835</max_angle> 
+            </vertical>
+         </scan>
+         <range>
+            <min>0.005</min>
+            <max>1.0</max>
+            <resolution>0.01</resolution>
+         </range>
+      </ray> 
+      <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+         <gaussianNoise>0.005</gaussianNoise>
+         <alwaysOn>true</alwaysOn>
+         <updateRate>50</updateRate>
+         <topicName>sensor/sonar1_scan</topicName>
+         <frameName>sonar1_link</frameName>
+         <radiation>ULTRASOUND</radiation>
+         <fov>0.2967</fov>
+      </plugin>
+   </sensor>  
+   </gazebo>
+   
+  <!-- sonar2 -->
+   <gazebo reference="sonar2_link">        
+   <sensor type="ray" name="sonar2">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>50</update_rate>
+         <ray>
+         <scan>
+            <horizontal>
+               <samples>10</samples>
+               <resolution>1</resolution> 
+               <min_angle>-0.14835</min_angle>
+               <max_angle>0.14835</max_angle>
+            </horizontal>
+            <vertical>
+               <samples>10</samples>
+               <resolution>1</resolution> 
+               <min_angle>-0.14835</min_angle>
+               <max_angle>0.14835</max_angle> 
+            </vertical>
+         </scan>
+         <range>
+            <min>0.005</min>
+            <max>1.0</max>
+            <resolution>0.01</resolution>
+         </range>
+      </ray> 
+      <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+         <gaussianNoise>0.005</gaussianNoise>
+         <alwaysOn>true</alwaysOn>
+         <updateRate>50</updateRate>
+         <topicName>sensor/sonar2_scan</topicName>
+         <frameName>sonar2_link</frameName>
+         <radiation>ULTRASOUND</radiation>
+         <fov>0.2967</fov>
+      </plugin>
+   </sensor>  
+   </gazebo>  
+
+</robot>

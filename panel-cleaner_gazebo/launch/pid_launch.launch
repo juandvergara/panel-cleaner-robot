@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="cleaner_pid" pkg="pid" type="controller" >
+      <param name="Kp" value="0.8" />
+      <param name="Ki" value="0.01" />
+      <param name="Kd" value="0.05" />
+      <param name="upper_limit" value="800" />
+      <param name="lower_limit" value="-800" />
+      <param name="windup_limit" value="800" />
+      <param name="max_loop_frequency" value="10.0" />
+      <param name="min_loop_frequency" value="10.0" />
+  </node>
+
+</launch>

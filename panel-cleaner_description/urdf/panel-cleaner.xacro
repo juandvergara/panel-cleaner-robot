@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot 
+    xmlns:xacro="http://www.ros.org/wiki/xacro" 
+    xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor" 
+    xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller" 
+    xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" 
+    name="panel-cleaner">
+
+    <xacro:include filename="$(find panel-cleaner_description)/urdf/panel-cleaner.gazebo" />
+
+    <link name="base_link">
+        <inertial>
+            <origin xyz="0.025757 -0.0090011 -8.1677E-05" rpy="0 0 0" />
+            <mass value="1.1071" />
+            <inertia ixx="0.0023818" ixy="-0.00016651" ixz="6.8234E-06" iyy="0.0085608" iyz="4.72E-07" izz="0.0064771" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/base_link.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.79216 0.81961 0.93333 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/base_link.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="wheel_1">
+        <inertial>
+            <origin xyz="0.015629 8.9171E-11 -1.5595E-10" rpy="0 0 0" />
+            <mass value="0.3065" />
+            <inertia ixx="0.0002214" ixy="-4.5161E-15" ixz="2.8077E-14" iyy="0.00012021" iyz="1.9971E-13" izz="0.00012021" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/wheel_1.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.65098 0.61961 0.58824 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/wheel_1.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="base_to_wheel1" type="continuous">
+        <origin xyz="0.0811 0.0697 -0.00775" rpy="2.1093 0 1.5708" />
+        <parent link="base_link" />
+        <child link="wheel_1" />
+        <axis xyz="1 0 0" />
+        <!-- <limit effort="100" velocity="10" />-->
+    </joint>
+
+    <link name="wheel_2">
+        <inertial>
+            <origin xyz="0.015629 -1.7798E-10 2.9137E-10" rpy="0 0 0" />
+            <mass value="0.3065" />
+            <inertia ixx="0.0002214" ixy="1.3026E-13" ixz="-1.2967E-13" iyy="0.00012021" iyz="2.2748E-13" izz="0.00012021" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/wheel_2.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.65098 0.61961 0.58824 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/wheel_2.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="base_to_wheel2" type="continuous">
+        <origin xyz="-0.0547 0.0697 -0.00775" rpy="1.674 0 1.5708" />
+        <parent link="base_link" />
+        <child link="wheel_2" />
+        <axis xyz="1 0 0" />
+        <!--<limit effort="100" velocity="10" />-->
+    </joint>
+
+    <link name="wheel_3">
+        <inertial>
+            <origin xyz="0.015629 1.1654E-10 1.1847E-10" rpy="0 0 0" />
+            <mass value="0.3065" />
+            <inertia ixx="0.0002214" ixy="-1.1245E-14" ixz="-4.6473E-15" iyy="0.00012021" iyz="4.2166E-15" izz="0.00012021" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/wheel_3.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.65098 0.61961 0.58824 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/wheel_3.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="base_to_wheel3" type="continuous">
+        <origin xyz="0.0811 -0.0697 -0.00775" rpy="-2.9048 0 -1.5708" />
+        <parent link="base_link" />
+        <child link="wheel_3" />
+        <axis xyz="-1 0 0" />
+        <!--<limit effort="100" velocity="10" />-->
+    </joint>
+
+    <link name="wheel_4">
+        <inertial>
+            <origin xyz="0.015629 1.0217E-10 5.6664E-11" rpy="0 0 0" />
+            <mass value="0.3065" />
+            <inertia ixx="0.0002214" ixy="4.5042E-14" ixz="2.3293E-14" iyy="0.00012021" iyz="-1.1534E-13" izz="0.00012021" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/wheel_4.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.65098 0.61961 0.58824 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/wheel_4.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="base_to_wheel4" type="continuous">
+        <origin xyz="-0.0547 -0.0697 -0.00775" rpy="1.9166 0 -1.5708" />
+        <parent link="base_link" />
+        <child link="wheel_4" />
+        <axis xyz="-1 0 0" />
+        <!-- <limit effort="100" velocity="10" />-->
+    </joint>
+
+    <link name="camera_link">
+        <inertial>
+            <origin xyz="0.0035 0.010113 -3.1171E-19" rpy="0 0 0" />
+            <mass value="0.0026257" />
+            <inertia ixx="1.718E-07" ixy="-5.9557E-23" ixz="1.7011E-24" iyy="6.9461E-08" iyz="-1.6896E-24" izz="1.2378E-07" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="1.5708 0.2618 0" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/camera_link.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.79216 0.81961 0.93333 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/camera_link.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="camera_joint" type="fixed">
+        <origin xyz="0.19528 5E-05 0.012985" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="camera_link" />
+        <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="sonar1_link">
+        <inertial>
+            <origin xyz="0 -0.0041618 -4.1633E-17" rpy="0 0 0" />
+            <mass value="0.0017942" />
+            <inertia ixx="2.9797E-08" ixy="-3.7432E-25" ixz="5.2902E-24" iyy="1.2797E-07" iyz="1.8085E-24" izz="1.2915E-07" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 -1.5708 1.5708" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/sonar1_link.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.79216 0.81961 0.93333 1" />
+            </material>
+        </visual>
+        <!--
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/sonar1_link.STL" />
+            </geometry>
+        </collision>-->
+    </link>
+
+    <joint name="sonar1_joint" type="fixed">
+        <origin xyz="0.19 0.093223 -0.017" rpy="0 1.5708 0" />
+        <parent link="base_link" />
+        <child link="sonar1_link" />
+        <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="sonar2_link">
+        <inertial>
+            <origin xyz="-2.7756E-17 -0.0041618 -4.1633E-17" rpy="0 0 0" />
+            <mass value="0.0017942" />
+            <inertia ixx="2.9797E-08" ixy="1.8265E-23" ixz="-1.3401E-24" iyy="1.2797E-07" iyz="-8.4079E-25" izz="1.2915E-07" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 -1.5708 1.5708" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/sonar2_link.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.79216 0.81961 0.93333 1" />
+            </material>
+        </visual>
+        <!--
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/sonar2_link.STL" />
+            </geometry>
+        </collision>-->
+    </link>
+
+    <joint name="sonar2_joint" type="fixed">
+        <origin xyz="0.19 -0.091777 -0.017" rpy="0 1.5708 0" />
+        <parent link="base_link" />
+        <child link="sonar2_link" />
+        <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="imu_link">
+        <inertial>
+            <origin xyz="-2.0817E-17 0.003 9.6453E-19" rpy="0 0 0" />
+            <mass value="0.0072" />
+            <inertia ixx="5.616E-07" ixy="-1.7937E-40" ixz="4.6434E-23" iyy="1.5E-06" iyz="0" izz="9.816E-07" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/imu_link.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.79216 0.81961 0.93333 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/imu_link.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="imu_joint" type="fixed">
+        <origin xyz="0 0 0.024" rpy="1.5708 0 0" />
+        <parent link="base_link" />
+        <child link="imu_link" />
+        <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="roller_link">
+        <inertial>
+            <origin xyz="0.000723 4.996E-16 4.1633E-16" rpy="0 0 0" />
+            <mass value="0.04194" />
+            <inertia ixx="2.2656E-06" ixy="5.8396E-20" ixz="-4.8334E-20" iyy="6.7402E-05" iyz="-6.7763E-21" izz="6.7402E-05" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/roller_link.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.79216 0.81961 0.93333 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://panel-cleaner_description/meshes/roller_link.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="base_to_roller" type="continuous">
+        <origin xyz="0.19 0 -0.012" rpy="2.6124 0 1.5708" />
+        <parent link="base_link" />
+        <child link="roller_link" />
+        <axis xyz="-1 0 0" />
+    </joint>
+
+    <!-- Drive controller -->
+    <gazebo>
+        <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+            <updateRate>100.0</updateRate>
+            <robotNamespace>/</robotNamespace>
+            <leftFrontJoint>base_to_wheel1</leftFrontJoint>
+            <rightFrontJoint>base_to_wheel3</rightFrontJoint>
+            <leftRearJoint>base_to_wheel2</leftRearJoint>
+            <rightRearJoint>base_to_wheel4</rightRearJoint>
+            <wheelSeparation>4</wheelSeparation>
+            <wheelDiameter>0.1</wheelDiameter>
+            <robotBaseFrame>base_link</robotBaseFrame>
+            <torque>1</torque>
+            <topicName>cmd_vel</topicName>
+            <broadcastTF>0</broadcastTF>
+        </plugin>
+    </gazebo> 
+    
+    <!--<gazebo>
+        <plugin name="diff_drive_controller" filename="libgazebo_ros_diff_drive.so">
+            <updateRate>100.0</updateRate>
+            <robotNamespace>/</robotNamespace>
+            <leftJoint>base_to_wheel1, base_to_wheel2</leftJoint>
+            <rightJoint>base_to_wheel3, base_to_wheel4</rightJoint>
+            <wheelSeparation>4</wheelSeparation>
+            <wheelDiameter>0.1</wheelDiameter>
+            <robotBaseFrame>base_link</robotBaseFrame>
+            <torque>1</torque>
+            <commandTopic>cmd_vel</commandTopic>
+            <broadcastTF>0</broadcastTF>
+        </plugin>
+    </gazebo> -->
+    
+    <!--<plugin name='differential_drive_controller' filename='libgazebo_ros_diff_drive.so'>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>100</updateRate>
+        <leftJoint>left_wheel_hinge</leftJoint>
+        <rightJoint>right_wheel_hinge</rightJoint>
+        <wheelSeparation>0.39</wheelSeparation>
+        <wheelDiameter>0.15</wheelDiameter>
+        <torque>5</torque>
+        <commandTopic>cmd_vel</commandTopic>
+        <odometryTopic>odom</odometryTopic>
+        <odometryFrame> -->
+
+</robot>
