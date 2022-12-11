@@ -1,6 +1,6 @@
 # ROBOT CLEANER TO SOLAR PANELS
 
-Design panel cleaner robot for solar panels
+Design of robot to clean solar panels. ROS Noetic.
 
 Credits:
 
